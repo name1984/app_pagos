@@ -1,0 +1,25 @@
+{% extends 'certificados/base.html' %}
+
+{% comment %} Aqui van comentarios {% endcomment %}
+
+{% block titulo %} Inicio {% endblock %}
+
+{% block encabezado %}
+    <h1>Aplicación de Pagos</h1>
+{% endblock %}
+
+{% block contenido %}
+    <p>Actualmente tenemos registrados:
+       {% with total=usuarios.count %}
+            {{total}} usuario{{total|pluralize}}
+       {% endwith %}
+    </p>
+
+    <ul>
+        {% for dato in usuarios %}
+        <li class="{% cycle 'impar' 'par' %}">{{ dato.nombre|title }}</li>
+        {% empty %}
+        <li>No existe usuarios registrados aún</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

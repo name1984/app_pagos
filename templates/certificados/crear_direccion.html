@@ -1,0 +1,36 @@
+{% extends 'certificados/base.html' %}
+{% block titulo %} Asignar Dirección{% endblock %}
+{% block encabezado %}
+    <h1>Registrar Dirección Usuario</h1>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $('select[name=cod_prov]').change(function(){
+                cod_prov_id = $(this).val();
+                request_url = '/get_ciudades/' + cod_prov_id + '/';
+                $.ajax({
+                    url: request_url,
+                    success: function(data){
+                        $('select[name=cod_city]').empty()
+                        $('select[name=cod_city]').append('<option value="0"> -----------</option>')
+                        $.each(data, function(key, value){
+                            $('select[name=cod_city]').append('<option value="' + key + '">' + value +'</option>');
+                        });
+                    },
+                    error: function() {
+                        alert('Error');
+                    }
+                })
+            })
+        });
+
+    </script>
+{% endblock %}
+{% block contenido %}
+    <form id="formulario" method="post" action="">{% csrf_token %}
+        <table>{{ formulario }}</table>
+        <p><input type="submit" value="Registrar"/></p>
+    </form>
+{% endblock %}

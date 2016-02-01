@@ -1,0 +1,18 @@
+{% extends 'certificados/base.html' %}
+{% block titulo %} Usuarios Registrados {% endblock %}
+
+{% block encabezado %}
+<h1>Usuarios</h1>
+{%  endblock%}
+
+{% block contenido %}
+<ul>
+    {% for dato in usuarios %}
+        <li>{{ dato.nombres}} - <em>{{ dato.apellido }}</em></li>
+        {% empty %}
+        <li>No hay usuarios registrados</li>
+    {% endfor %}
+
+    <li><a href="/usuario/nuevo">Agregar Usuario</a> </li>
+</ul>
+{% endblock %}

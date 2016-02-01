@@ -1,0 +1,19 @@
+{% extends 'certificados/base.html' %}
+{% block titulo %} Información Participante {% endblock %}
+
+{% block encabezado %}
+<h1>Información Participante</h1>
+{%  endblock%}
+
+{% block contenido %}
+<ul>
+    {% for dato in usuarios %}
+        <li>Nombres : {{ dato.nombres}} </li>
+        <li>Apellidos : {{ dato.apellido }}</li>
+    {% empty %}
+        <li>No existe un participante con esa información</li>
+    {% endfor %}
+
+    <li><a href="/usuario/nuevo">Agregar Usuario</a> </li>
+</ul>
+{% endblock %}
